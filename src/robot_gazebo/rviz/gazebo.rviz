@@ -59,6 +59,12 @@ Visualization Manager:
       Radius: 0.05
       Value: true
 
+    - Class: rviz_default_plugins/PointCloud2
+      Enabled: true
+      Name: PointCloud2
+      Topic: "/points_raw"
+      Value: true
+
   Tools:
     - Class: rviz_default_plugins/MoveCamera
     - Class: rviz_default_plugins/Select
