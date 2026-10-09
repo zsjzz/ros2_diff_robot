@@ -1,0 +1,10 @@
+# ROS 2 / Colcon build outputs
+build/
+install/
+log/
+
+# IDE
+.vscode/
+
+# python
+**/__pycache__/**
