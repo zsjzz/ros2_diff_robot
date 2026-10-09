@@ -65,6 +65,17 @@ Visualization Manager:
       Topic: "/points_raw"
       Value: true
 
+    - Class: rviz_default_plugins/LaserScan
+      Enabled: true
+      Name: LaserScan
+      Topic:
+        Value: /scan
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Depth: 5
+      Value: true
+
   Tools:
     - Class: rviz_default_plugins/MoveCamera
     - Class: rviz_default_plugins/Select

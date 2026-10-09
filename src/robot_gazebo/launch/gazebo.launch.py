@@ -8,7 +8,7 @@
 	include/gazebo_robot.launch.py       把模型生成到 Gazebo 中
 	include/bridge.launch.py             Gazebo 与 ROS 2 的话题桥接
 	include/control.launch.py            ros2_control 控制器加载
-	include/gazebo_dev_lidar.launch.py   雷达坐标系静态 TF
+	include/gazebo_dev_lidar.launch.py   雷达话题映射与点云转 2D 激光
 
 	启动顺序:
 	gazebo_world -> robot_description -> gazebo_robot -> bridge -> control
