@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- ========================================================= -->
+<!--      四轮差速小车 ros2_control 接口声明                     -->
+<!--   lf_wheel_joint / lb_wheel_joint  -> 左侧驱动轮           -->
+<!--   rf_wheel_joint / rb_wheel_joint  -> 右侧驱动轮           -->
+<!-- ========================================================= -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- 硬件后端参数: 由外部传入 -->
+	<xacro:arg name="hardware_name" default="GazeboSimSystem"/>
+	<xacro:arg name="hardware_plugin" default="gz_ros2_control/GazeboSimSystem"/>
+
+	<!-- 单轮最大角速度 (rad/s): 0.127m 轮半径下约 1.27 m/s -->
+	<xacro:property name="max_wheel_velocity" value="10.0"/>
+
+	<ros2_control name="$(arg hardware_name)" type="system">
+
+		<hardware>
+			<plugin>$(arg hardware_plugin)</plugin>
+		</hardware>
+
+		<!-- ================= 左侧驱动轮 ================= -->
+		<joint name="lf_wheel_joint">
+			<command_interface name="velocity">
+				<param name="min">${-max_wheel_velocity}</param>
+				<param name="max">${max_wheel_velocity}</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+
+		<joint name="lb_wheel_joint">
+			<command_interface name="velocity">
+				<param name="min">${-max_wheel_velocity}</param>
+				<param name="max">${max_wheel_velocity}</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+
+		<!-- ================= 右侧驱动轮 ================= -->
+		<joint name="rf_wheel_joint">
+			<command_interface name="velocity">
+				<param name="min">${-max_wheel_velocity}</param>
+				<param name="max">${max_wheel_velocity}</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+
+		<joint name="rb_wheel_joint">
+			<command_interface name="velocity">
+				<param name="min">${-max_wheel_velocity}</param>
+				<param name="max">${max_wheel_velocity}</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+	</ros2_control>
+
+</robot>
