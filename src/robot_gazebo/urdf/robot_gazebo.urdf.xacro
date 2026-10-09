@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<robot name="four_wheel_diff_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- robot_description -->
+	<xacro:include filename="$(find robot_description)/urdf/robot_description.urdf.xacro"/>
+
+	<xacro:include filename="$(find robot_control)/urdf/control.urdf.xacro"/>
+
+	<gazebo>
+		<plugin filename="libgz_ros2_control-system.so"
+					name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+			<parameters>$(find robot_control)/config/controllers.yaml</parameters>
+			<ros>
+				<remapping>/diff_drive_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
+			</ros>
+		</plugin>
+		
+	</gazebo>
+
+
+	<!-- ====================================== -->
+	<!-- 32线激光雷达 -->
+	<!-- ====================================== -->
+	<gazebo reference="laser_link">
+		<sensor name="c32_lidar" type="gpu_lidar">
+
+			<pose>0 0 0 0 0 0</pose>
+			<!-- 指定雷达输出的坐标系名称 -->
+			<!-- <ignition_frame_id>laser_link</ignition_frame_id> -->
+			<always_on>true</always_on>
+			<visualize>true</visualize>
+			<!-- 扫描频率：10Hz -->
+			<update_rate>10</update_rate>
+			<!-- Gazebo 雷达话题 -->
+			<topic>/c32</topic>
+			<!-- C32 雷达扫描参数 -->
+
+			<lidar>
+				<scan>
+					<!-- 水平扫描 360度 -->
+					<horizontal>
+						<samples>2000</samples>
+						<resolution>1</resolution>
+						<min_angle>-3.14159265</min_angle>
+						<max_angle>3.14159265</max_angle>
+					</horizontal>
+
+					<!-- 垂直扫描 32线 -->
+					<vertical>
+						<samples>32</samples>
+						<resolution>1</resolution>
+						<min_angle>-0.279253</min_angle>
+						<max_angle>0.261799</max_angle>
+					</vertical>
+				</scan>
+
+				<!-- 测距范围 -->
+				<range>
+					<min>0.15</min>
+					<max>70.0</max>
+					<resolution>0.01</resolution>
+
+					<!-- 测量噪声模拟 -->
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.02</stddev>
+					</noise>
+				</range>
+			</lidar>
+		</sensor>
+	</gazebo>
+
+</robot>
