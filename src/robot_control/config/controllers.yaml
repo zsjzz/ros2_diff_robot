@@ -20,7 +20,7 @@ diff_drive_controller:
     left_wheel_names: ["lf_wheel_joint", "lb_wheel_joint"]
     right_wheel_names: ["rf_wheel_joint", "rb_wheel_joint"]
 
-    # 由 robot_description/urdf/four_wheel_diff_robot.urdf.xacro 量测:
+    # 由 robot_description/urdf/robot_description.urdf.xacro 量测:
     #   轮半径 = 254mm 轮径 / 2
     #   轮距   = 左轮中心(+0.3027) 到 右轮中心(-0.3053)
     wheel_separation: 0.608
